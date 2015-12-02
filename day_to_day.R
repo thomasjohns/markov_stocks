@@ -240,8 +240,8 @@ second_trans_mat[4, ] <- second_trans_mat[4, ] / total_large_decrease_days
 # look at the transition matrix
 print('second transition matrix:', quote=F)
 print(second_trans_mat)
-print('second transition matrix to power 10:', quote=F)
-print(second_trans_mat %^% 10)
+print('second transition matrix to power 30:', quote=F)
+print(second_trans_mat %^% 30)
 
 
 # simulate the last year using a random walk using the value

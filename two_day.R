@@ -5,8 +5,8 @@ library(expm)
 setwd("~/math_381_group/markov_stocks")
 
 # read in the data
-#data <- read.csv('goog.csv')
-data <- read.csv('pbr_a.csv')
+data <- read.csv('goog.csv')
+#data <- read.csv('pbr_a.csv')
 
 # set date at which to stop training data and start simulation
 stop_date <- "2015-01-01"
@@ -215,7 +215,7 @@ third_model_simulation <- function() {
 
 # plot the simulation against the actual values
 plot(training_dates, training_closing_prices, type='l', col='blue', lwd=1,
-     xlab='Date', ylab='Closing Price', main='Simulation Using Third Model',
+     xlab='Date', ylab='Closing Price', main='Google Stock Simulation Using 2-day to 2-day Model',
      xlim=c(all_dates[1], all_dates[length(all_dates)]),
      ylim=c(min(all_closing_prices), max(all_closing_prices)))
 lines(last_year_dates, last_year_closing_prices, col='black', lwd=1)
@@ -228,7 +228,7 @@ for (i in 1:num_simulations) {
    lines(last_year_dates, predicted_prices, col=colors[i], lwd=1)
 }
 legend('topleft', legend=c('Training data', '2015 values', 
-                           'simulation 1', 'simulation 2', 'simulation 3'), 
+                           'simulation trial', 'simulation trial', 'simulation trial'), 
        col=c('blue', 'black', 'purple', 'green', 'red'), lwd=c(2, 2, 2, 2, 2))
 
 

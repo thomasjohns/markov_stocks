@@ -10,8 +10,8 @@ data <- read.csv('goog.csv')
 #data <- read.csv('pbr_a.csv')
 
 # set date at which to stop training data and start simulation
-#stop_date <- "2015-01-01"
-stop_date <- "2015-11-12"
+stop_date <- "2015-01-01"
+#stop_date <- "2015-11-12"
 
 # read in closing prices and training_dates
 all_dates <- rev(as.Date(data$Date, format='%d-%b-%y'))
@@ -140,23 +140,23 @@ any_num_days_simulation <- function(num_days) {
 
 
 
-# # plot the simulation against the actual values
-# plot(training_dates, training_closing_prices, type='l', col='blue', lwd=1,
-#      xlab='Date', ylab='Closing Price', main='',
-#      xlim=c(all_dates[1], all_dates[length(all_dates)]),
-#      ylim=c(min(all_closing_prices), max(all_closing_prices)))
-# lines(last_year_dates, last_year_closing_prices, col='black', lwd=1)
-# 
-# num_simulations <- 3
-# colors <- c('purple', 'green', 'red')
-# for (i in 1:num_simulations) {
-#    predicted_prices <- any_num_days_simulation(3)
-#    # simulated values
-#    lines(last_year_dates, predicted_prices, col=colors[i], lwd=1)
-# }
-# legend('topleft', legend=c('Training data', '2015 values', 
-#                            'simulation 1', 'simulation 2', 'simulation 3'), 
-#        col=c('blue', 'black', 'purple', 'green', 'red'), lwd=c(2, 2, 2, 2, 2))
+# plot the simulation against the actual values
+plot(training_dates, training_closing_prices, type='l', col='blue', lwd=1,
+     xlab='Date', ylab='Closing Price', main='Google Stock Simulation Using 5-day to 5-day Model',
+     xlim=c(all_dates[1], all_dates[length(all_dates)]),
+     ylim=c(min(all_closing_prices), max(all_closing_prices)))
+lines(last_year_dates, last_year_closing_prices, col='black', lwd=1)
+
+num_simulations <- 3
+colors <- c('purple', 'green', 'red')
+for (i in 1:num_simulations) {
+   predicted_prices <- any_num_days_simulation(3)
+   # simulated values
+   lines(last_year_dates, predicted_prices, col=colors[i], lwd=1)
+}
+legend('topleft', legend=c('Training data', '2015 values', 
+                           'simulation trial 1', 'simulation trial 2', 'simulation trail 3'), 
+       col=c('blue', 'black', 'purple', 'green', 'red'), lwd=c(2, 2, 2, 2, 2))
 
 
 # # plot of averages
@@ -166,40 +166,40 @@ any_num_days_simulation <- function(num_days) {
 #      ylim=c(min(all_closing_prices), max(all_closing_prices)))
 # lines(last_year_dates, last_year_closing_prices, col='black', lwd=1)
 # 
-# num_simulations <- 25
+# num_simulations <- 100
 # average_predicted_prices <- rep(0, times=length(last_year_closing_prices))
 # for (i in 1:num_simulations) {
-#    average_predicted_prices <- average_predicted_prices + any_num_days_simulation(3)  
+#    average_predicted_prices <- average_predicted_prices + any_num_days_simulation(5)  
 # }
 # average_predicted_prices <- average_predicted_prices / num_simulations
 # lines(last_year_dates, average_predicted_prices, col='orange', lwd=2)
 
 
-# zoom in on last week
-last_date <- all_dates[length(all_dates)]
-plot(training_dates[(length(training_dates)-10):length(training_dates)], 
-     training_closing_prices[(length(training_dates)-10):length(training_dates)],
-     type='l', col='blue', lwd=2,
-     xlab='Date', ylab='Closing Price', main='',
-     xlim=c(training_dates[length(training_dates)-10], last_date),
-     ylim=c(min(c(training_closing_prices[(length(training_dates)-10):length(training_dates)], 
-                  last_year_closing_prices)), max(last_year_closing_prices)))
-lines(c(training_dates[length(training_dates)], last_year_dates), 
-      c(training_closing_prices[length(training_closing_prices)], 
-        last_year_closing_prices), 
-      col='black', lwd=2)
-
-num_simulations <- 3
-colors <- c('purple', 'green', 'red')
-for (i in 1:num_simulations) {
-   predicted_prices <- any_num_days_simulation(3)
-   # simulated values
-   lines(c(training_dates[length(training_dates)], last_year_dates), 
-         c(training_closing_prices[length(training_closing_prices)], predicted_prices), 
-         col=colors[i], lwd=2)
-}
-legend('topleft', legend=c('Training data', '2015 values', 
-                           'simulation 1', 'simulation 2', 'simulation 3'), 
-       col=c('blue', 'black', 'purple', 'green', 'red'), lwd=c(2, 2, 2, 2, 2))
+# # zoom in on last week
+# last_date <- all_dates[length(all_dates)]
+# plot(training_dates[(length(training_dates)-10):length(training_dates)], 
+#      training_closing_prices[(length(training_dates)-10):length(training_dates)],
+#      type='l', col='blue', lwd=2,
+#      xlab='Date', ylab='Closing Price', main='',
+#      xlim=c(training_dates[length(training_dates)-10], last_date),
+#      ylim=c(min(c(training_closing_prices[(length(training_dates)-10):length(training_dates)], 
+#                   last_year_closing_prices)), max(last_year_closing_prices)))
+# lines(c(training_dates[length(training_dates)], last_year_dates), 
+#       c(training_closing_prices[length(training_closing_prices)], 
+#         last_year_closing_prices), 
+#       col='black', lwd=2)
+# 
+# num_simulations <- 3
+# colors <- c('purple', 'green', 'red')
+# for (i in 1:num_simulations) {
+#    predicted_prices <- any_num_days_simulation(5)
+#    # simulated values
+#    lines(c(training_dates[length(training_dates)], last_year_dates), 
+#          c(training_closing_prices[length(training_closing_prices)], predicted_prices), 
+#          col=colors[i], lwd=2)
+# }
+# legend('topleft', legend=c('Training data', '2015 values', 
+#                            'simulation 1', 'simulation 2', 'simulation 3'), 
+#        col=c('blue', 'black', 'purple', 'green', 'red'), lwd=c(2, 2, 2, 2, 2))
 
 
